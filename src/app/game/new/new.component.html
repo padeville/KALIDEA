@@ -1,1 +1,27 @@
-<p>new works!</p>
+<form [formGroup]="tableForm" #formDir="ngForm">
+  <div class="row">
+    <div class="col">
+      <label for="exampleInputEmail1">Rows</label>
+      <input
+        type="number"
+        class="form-control"
+        id="exampleInputrows"
+        aria-describedby="rows"
+        placeholder="rows"
+        formControlName="rows"
+        required
+      />
+    </div>
+    <div class="col">
+      <label for="exampleInputPassword1">cols</label>
+      <input
+        type="number"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="cols"
+        formControlName="cols"
+        required
+      />
+    </div>
+  </div>
+</form>
