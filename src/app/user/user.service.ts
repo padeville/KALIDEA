@@ -28,7 +28,7 @@ export class UserService {
     this.userSubject = new BehaviorSubject<User | null>(storedUser);
     this.userSubject
       .pipe(
-        skip(1), // skip first emission
+        skip(1), 
         tap((user) =>
           localStorage.setItem(UserService.storageKey, JSON.stringify(user))
         )
@@ -51,17 +51,7 @@ export class UserService {
     return this.userSubject.asObservable();
   }
 
-  login({ password, email }: Credentials): Observable<User | null> {
-    let obs: Observable<User>;
-
-    if (email === 'john@doe' && password === 'abcde') {
-      obs = of({
-        id: '5fc62fdb5eb04def08ac913a',
-        username: 'JohnDoe',
-      });
-    } else {
-      obs = throwError(new Error('invalid credential'));
-    }
+  login({ email }: Credentials): Observable<User | null> {
     return this.checkUser(email).pipe(
       map((users) => users?.find((user) => user?.email === email)),
       map((user) => {
@@ -75,12 +65,6 @@ export class UserService {
           return null;
         }
       }),
-      tap((user) => this.userSubject.next(user))
-    );
-    // .pipe(tap((user) => this.userSubject.next(user)));
-
-    return obs.pipe(
-      delay(UserService.delay), // simulate api
       tap((user) => this.userSubject.next(user))
     );
   }

@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe((user) => {
-        console.log(user);
         if (user !== null) {
           this.router.navigate(['']);
         }
