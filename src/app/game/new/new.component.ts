@@ -43,16 +43,17 @@ export class NewComponent implements OnInit {
   }
 
   drawGrid(val: Table): void {
+    const oldTable = this.table;
     this.table = [];
 
-    for (let i = 0; i < val.rows; i++ ) {
-      this.table.push([])
+    for (let i = 0; i < val.rows; i++) {
+      this.table.push([]);
       for (let j = 0; j < val.cols; j++) {
-        this.table[i].push('')
+        if (oldTable && Array.isArray(oldTable[i]) && oldTable[i][j] !== '') this.table[i].push(oldTable[i][j]);
+        else this.table[i].push('');
       }
     }
-    console.log(this.table)
-    this.changeDetectorRef.detectChanges()
+    this.changeDetectorRef.detectChanges();
   }
 
   get rows() {
