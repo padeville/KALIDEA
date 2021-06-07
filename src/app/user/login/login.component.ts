@@ -48,8 +48,6 @@ export class LoginComponent implements OnInit {
       .subscribe((user) => {
         console.log(user);
         if (user !== null) {
-          console.log(user);
-
           this.router.navigate(['']);
         }
       });
