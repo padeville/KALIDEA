@@ -36,6 +36,7 @@ export class NewComponent implements OnInit {
       cols: new FormControl(6, [Validators.required, this.minVal(1)]),
     });
 
+    this.drawGrid(this.tableForm.value);
     this.tableForm.valueChanges.subscribe((val: Table) => {
       this.drawGrid(val);
     });
@@ -50,6 +51,7 @@ export class NewComponent implements OnInit {
         this.table[i].push('')
       }
     }
+    console.log(this.table)
     this.changeDetectorRef.detectChanges()
   }
 
