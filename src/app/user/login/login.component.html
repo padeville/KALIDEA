@@ -1,52 +1,57 @@
-<form [formGroup]="profileForm" #formDir="ngForm">
-  <div *ngIf="credentialError" class="alert alert-danger">
-    Error: invalid credential
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-      placeholder="Enter email"
-      formControlName="email"
-      required
-    />
+<app-loading [loading]="loading">
+  <form [formGroup]="profileForm" #formDir="ngForm">
+    <div *ngIf="credentialError" class="alert alert-danger">
+      Error: invalid credential
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        formControlName="email"
+        required
+      />
 
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
-      <div *ngIf="email.errors?.required">email is required.</div>
-      <div *ngIf="email.errors?.minlength">
-        email must be at least 6 characters long.
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert"
+      >
+        <div *ngIf="email.errors?.required">email is required.</div>
+        <div *ngIf="email.errors?.minlength">
+          email must be at least 6 characters long.
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="exampleInputPassword1"
-      placeholder="Password"
-      formControlName="password"
-      required
-    />
-    <div
-      *ngIf="password?.invalid && (password?.dirty || password?.touched)"
-      class="alert"
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        formControlName="password"
+        required
+      />
+      <div
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="alert"
+      >
+        <div *ngIf="password?.errors?.required">password is required.</div>
+        <div *ngIf="password?.errors?.minlength">
+          password must be at least 5 characters long.
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!profileForm.valid"
     >
-      <div *ngIf="password?.errors?.required">password is required.</div>
-      <div *ngIf="password?.errors?.minlength">
-        password must be at least 5 characters long.
-      </div>
-    </div>
-  </div>
-  <button
-    type="submit"
-    class="btn btn-primary"
-    (click)="onSubmit()"
-    [disabled]="!profileForm.valid"
-  >
-    Submit
-  </button>
-</form>
+      Submit
+    </button>
+  </form>
+</app-loading>

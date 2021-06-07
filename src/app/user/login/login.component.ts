@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, of, Subscription, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { User } from '../models/user';
 import { UserService } from '../user.service';
 import { Location } from '@angular/common';
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   profileForm!: FormGroup;
   userObserbable!: Subscription;
+  loading: boolean = false;
 
   credentialError = false;
   constructor(
@@ -36,9 +37,12 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit() {
+    this.loading = true;
+
     this.userObserbable = this.userService
       .login(this.profileForm.value)
       .pipe(
+        finalize(() => (this.loading = false)),
         catchError((err) => {
           this.credentialError = true;
           console.log('Handling error locally and rethrowing it...', err);
