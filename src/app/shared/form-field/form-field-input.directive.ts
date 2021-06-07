@@ -1,10 +1,11 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: 'app-form-field input[title]',
+  selector: '[toto]',
 })
 export class FormFieldInputDirective {
   constructor(el: ElementRef) {
+    console.log('el', el)
     el.nativeElement.classList.add(['form-control', 'rounded-right']);
   }
 }

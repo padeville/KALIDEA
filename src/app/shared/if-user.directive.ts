@@ -9,7 +9,6 @@ export class IfUserDirective {
   el!: ElementRef;
   constructor(el: ElementRef, private userService: UserService) {
     this.el = el;
-
     userService.user$.subscribe((user) => {
       this.update(user);
     });

@@ -3,6 +3,14 @@
     <div *ngIf="credentialError" class="alert alert-danger">
       Error: invalid credential
     </div>
+    <app-form-field>
+      <input 
+        formControlName="password"
+        id="login_password"
+        title="Password"
+        type="password">
+    </app-form-field>
+
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input

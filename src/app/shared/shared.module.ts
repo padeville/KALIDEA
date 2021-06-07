@@ -4,6 +4,7 @@ import { FormFieldComponent } from './form-field/form-field.component';
 import { LoadingComponent } from './loading/loading.component';
 import { IfUserDirective } from './if-user.directive';
 import { IfNoUserDirective } from './if-no-user.directive';
+import { FormFildInputDirective } from './form-fild-input.directive';
 
 
 
@@ -12,11 +13,12 @@ import { IfNoUserDirective } from './if-no-user.directive';
     FormFieldComponent,
     LoadingComponent,
     IfUserDirective,
-    IfNoUserDirective
+    IfNoUserDirective,
+    FormFildInputDirective
   ],
   imports: [
     CommonModule
   ],
-  exports: [LoadingComponent, IfNoUserDirective, IfUserDirective,]
+  exports: [LoadingComponent, IfNoUserDirective, IfUserDirective, FormFieldComponent,  FormFildInputDirective]
 })
 export class SharedModule { }
